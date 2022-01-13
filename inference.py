@@ -49,7 +49,7 @@ generator.load_state_dict(torch.load(f"./generator_1052.pth"))
 Tensor = torch.cuda.FloatTensor if cuda else torch.Tensor
 
 dataloader = DataLoader(
-    ImageDataset("./testing_lr_images/testing_lr_images", hr_shape=hr_shape,
+    ImageDataset("./datasets/testing_lr_images/testing_lr_images", hr_shape=hr_shape,
                  test=True),
     batch_size=1,
     shuffle=False,
@@ -92,5 +92,5 @@ for epoch in range(opt.epoch, opt.n_epochs):
         # cv2.imwrite('kkk.jpg', cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
         os.makedirs('results', exist_ok=True)
         # gen_hrs.append(img)
-        img.save(f'results/{i:02}_pred.png')
+        img.save(f'./results/{i:02}_pred.png')
     break
