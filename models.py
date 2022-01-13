@@ -34,8 +34,8 @@ class GeneratorResNet(nn.Module):
     def __init__(self, in_channels=3, out_channels=3, n_residual_blocks=16):
         super(GeneratorResNet, self).__init__()
 
-        self.down_conv1 = nn.Sequential(nn.Conv2d(in_channels, 64, kernel_size=9, stride=2, padding=4), nn.PReLU())
-        self.down_conv2 = nn.Sequential(nn.Conv2d(in_channels, 64, kernel_size=9, stride=2, padding=4), nn.PReLU())
+        # self.down_conv1 = nn.Sequential(nn.Conv2d(in_channels, 64, kernel_size=9, stride=2, padding=4), nn.PReLU())
+        # self.down_conv2 = nn.Sequential(nn.Conv2d(in_channels, 64, kernel_size=9, stride=2, padding=4), nn.PReLU())
 
         # First layer
         self.conv1 = nn.Sequential(nn.Conv2d(in_channels, 64, kernel_size=9, stride=1, padding=4), nn.PReLU())
@@ -65,9 +65,10 @@ class GeneratorResNet(nn.Module):
         self.conv3 = nn.Sequential(nn.Conv2d(64, out_channels, kernel_size=9, stride=1, padding=4), nn.Tanh())
 
     def forward(self, x):
-        down = self.down_conv1(x)
-        down = self.down_conv2(down)
-        out1 = self.conv1(down)
+        # down = self.down_conv1(x)
+        # down = self.down_conv2(down)
+        # out1 = self.conv1(down)
+        out1 = self.conv1(x)
         out = self.res_blocks(out1)
         out2 = self.conv2(out)
         out = torch.add(out1, out2)
