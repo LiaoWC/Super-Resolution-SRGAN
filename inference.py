@@ -1,7 +1,6 @@
 import argparse
 import os
 
-os.chdir('/home/smallfish/repo/VRDL/HW4/')
 import numpy as np
 import math
 import itertools
@@ -50,7 +49,7 @@ generator.load_state_dict(torch.load(f"./generator_1052.pth"))
 Tensor = torch.cuda.FloatTensor if cuda else torch.Tensor
 
 dataloader = DataLoader(
-    ImageDataset("/home/smallfish/repo/VRDL/HW4/datasets/testing_lr_images/testing_lr_images", hr_shape=hr_shape,
+    ImageDataset("./testing_lr_images/testing_lr_images", hr_shape=hr_shape,
                  test=True),
     batch_size=1,
     shuffle=False,
